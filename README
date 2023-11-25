@@ -1,0 +1,52 @@
+- Build instructions:
+	1. Start Visual Studio Command prompt
+	2. Open the source folder with following command:
+	   cd <path>
+	3. Run following cmake command:
+	   cmake -G "Ninja" -B build
+	4. Build the program with following command:
+	   cmake --build build
+	5. Binary and library will be on following destination:
+	   <path>\build\Tic-Tac-Toe\
+
+- Source structure:
+    |- TestFiles\         -- Folder with data files used as a test input
+    |- Tic-Tac-Toe\       -- Folder with source files for binary and library
+    |  |- BoardHandle.cpp
+    |  |- BoardHandle.h   -- Unique board handle that can be used to manage and interact with the game
+    |  |- CMakeLists.txt  -- CMake project file for Tic-Tac-Toe executable and game library
+    |  |- Game.cpp
+    |  |- Game.h		  -- Tic-Tac-Toe game library
+    |  |- GameStatus.h	  -- Game statuses
+    |  |- Tic-Tac-Toe.cpp -- Program that utilizes the Tic-Tac-Toe game library
+    |  |- Utils.cpp
+    |  |- Utils.h		  -- Utility components
+    |- CMakeLists.txt     -- Top-level CMake project file
+    |- README             -- File with a build instructions and brief description
+
+- Description:
+	The program calculate the wins of Tic-Tac-Toe games read from files located in a directory
+	path provided through the command line. Files contain game messages, which can be in two types:
+	1. Move message - starts with a single letter designating X or O player’s move followed by
+	   a pair of digits used to mark position on the board. A single space char is used as a
+	   delimiter. So the move message should be in following format: "<player> <row> <column>".
+	   Where <row> and <column> are numbers between 0 and 2.
+    2. Reset message RST - brings the game to initial state.
+
+	Messages are case insensitive and have to be separated by lines in files. After finished game
+	(one side wins or draw), the game resets automatically, so each file can contain many games.
+	
+	All games, from all files will be played, and the final results will be written to single a
+	RESULTS text file in same directory path provided through the command line, in the following
+	format:
+	X: <number of wins>
+	O: <number of wins>
+	D: <number of draws>
+
+- Usage:
+	.\Tic-Tac-Toe.exe <path>
+
+	Where <path> is folder with files which will be read.
+
+- Author:
+	Ivan Arizanovic <ivanarizanovic@yahoo.com>
